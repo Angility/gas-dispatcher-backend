@@ -1,5 +1,6 @@
 [project]
 name = "gas-dispatcher-backend"
+package-mode = false
 version = "0.1.0"
 description = ""
 authors = [
