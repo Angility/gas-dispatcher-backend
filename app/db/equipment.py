@@ -1,6 +1,12 @@
 from app.db.models import Base
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, ForeignKey, Boolean
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .grs import GRS
+    from .consumer import Consumer
+    from .daily_consumption import DailyConsumption
 
 class Equipment(Base):
     __tablename__ = "equipment"   
@@ -14,5 +20,8 @@ class Equipment(Base):
     id_consumer: Mapped[int] = mapped_column(ForeignKey("consumer.id"), comment="Ссылка на потребителя")
     
     ais_code: Mapped[str] = mapped_column(String(12), comment="АИС.Код")
-    ais_deleted: Mapped[bool] = mapped_column(Boolean, default=False, comment="АИС.Пометка_удаления")
- 
+    ais_deleted: Mapped[bool] = mapped_column(Boolean, default=False, comment="АИС.Пометка удаления")
+
+    grs: Mapped["GRS"] = relationship(back_populates="equipments")
+    consumer: Mapped["Consumer"] = relationship(back_populates="equipments")
+    consumprion: Mapped["DailyConsumption"] = relationship(back_populates="daily_consumption")
