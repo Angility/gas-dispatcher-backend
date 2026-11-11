@@ -7,6 +7,8 @@ if TYPE_CHECKING:
     from .consumer import Consumer
     from .allocated_supply import AllocatedSupply
     from .contract_priority import ContractPriority
+    from .allocated_plan import AllocatedPlan
+
 
 class Contract(Base):
     __tablename__ = "contract"
@@ -23,3 +25,4 @@ class Contract(Base):
     allocated_supply : Mapped[list["AllocatedSupply"]] = relationship(back_populates="contract")
     contract_priorities : Mapped[list["ContractPriority"]] = relationship(back_populates="contract")
     consumer : Mapped["Consumer"] = relationship(back_populates="contracts")
+    allocated_plans: Mapped[list["AllocatedPlan"]] = relationship(back_populates="contract")

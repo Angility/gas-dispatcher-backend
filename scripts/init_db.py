@@ -1,4 +1,7 @@
 # scripts/init_db.py
+# WARNING: DO NOT USE IN PRODUCTION. USE ALEMBIC MIGRATIONS ONLY.
+# Этот скрипт предназначен исключительно для локальной разработки и быстрого сброса БД.
+
 import asyncio
 import sys
 from pathlib import Path
